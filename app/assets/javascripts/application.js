@@ -13,4 +13,26 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
+//= require jquery3
+//= require vendor
+//= require_tree ./controllers
+
+(function () {
+  this.App || (this.App = {})
+
+  App.Stimulus = Stimulus.Application.start()
+
+  if ($) {
+    let token = $('meta[name="csrf-token"]').attr('content')
+
+    $.ajaxSetup({
+      beforeSend: function (xhr, settings) {
+        xhr.setRequestHeader('X-CSRF-Token', token)
+        if (typeof this.onBeforeSend === 'function') {
+          this.onBeforeSend(xhr, settings)
+        }
+      }
+    })
+  }
+
+}).call(this);

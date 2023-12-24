@@ -64,5 +64,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "hirb"
 gem "awesome_print", "~> 1.9"
 
-gem "jquery-rails", "~> 4.6"
 gem "devise", "~> 4.9"
+gem 'bootstrap', '~> 4.0.0'
+gem "jquery-rails", "~> 4.6"

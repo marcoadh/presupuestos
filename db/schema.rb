@@ -12,35 +12,35 @@
 
 ActiveRecord::Schema.define(version: 2023_12_25_233156) do
 
-  create_table "budgets", force: :cascade do |t|
+  create_table "budgets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "description"
     t.float "value", default: 0.0
     t.date "main_date"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_budgets_on_user_id"
   end
 
-  create_table "expenses", force: :cascade do |t|
+  create_table "expenses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "description"
     t.float "value", default: 0.0
-    t.integer "budget_id"
+    t.bigint "budget_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["budget_id"], name: "index_expenses_on_budget_id"
   end
 
-  create_table "incomes", force: :cascade do |t|
+  create_table "incomes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "description"
     t.float "value", default: 0.0
-    t.integer "budget_id"
+    t.bigint "budget_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["budget_id"], name: "index_incomes_on_budget_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "full_name"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -53,4 +53,7 @@ ActiveRecord::Schema.define(version: 2023_12_25_233156) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "budgets", "users"
+  add_foreign_key "expenses", "budgets"
+  add_foreign_key "incomes", "budgets"
 end

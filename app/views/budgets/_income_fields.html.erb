@@ -1,0 +1,26 @@
+<div class="row align-items-center p-1 form-income">
+  <div class="col-7">
+    <%= form.text_field :description, class: "form-control income_description", placeholder: "Ingresar Descripción", required: true %>
+  </div>
+  <div class="col-3">
+    <%= form.number_field :value, class: "form-control income_value", required: true, min: 0, data: {
+      action: "change->budgets#loadAvailableBudget"
+    } %>
+  </div>
+  <div class="col-2">
+    <%= form.hidden_field :_destroy %>
+    <%= link_to "#", class: "text-danger", data: {
+      action: "click->budgets#removeItem click->budgets#loadAvailableBudget",
+      model: {
+        class: ".form-income",
+        name: "ingresos",
+        class_attributes: {
+          description: ".income_description",
+          value: ".income_value"
+        }
+      }
+    } do %>
+      <%= image_tag('icon-delete.svg') %>
+    <% end %>
+  </div>
+</div>

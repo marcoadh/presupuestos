@@ -17,24 +17,13 @@
 //= require popper
 //= require bootstrap
 //= require vendor
+//= require_self
 //= require_tree ./controllers
+//= require_tree ./components
 
 (function () {
   this.App || (this.App = {})
 
   App.Stimulus = Stimulus.Application.start()
-
-  if ($) {
-    let token = $('meta[name="csrf-token"]').attr('content')
-
-    $.ajaxSetup({
-      beforeSend: function (xhr, settings) {
-        xhr.setRequestHeader('X-CSRF-Token', token)
-        if (typeof this.onBeforeSend === 'function') {
-          this.onBeforeSend(xhr, settings)
-        }
-      }
-    })
-  }
 
 }).call(this);

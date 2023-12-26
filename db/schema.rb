@@ -10,24 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_12_24_202049) do
+ActiveRecord::Schema.define(version: 2023_12_25_233156) do
 
   create_table "budgets", force: :cascade do |t|
     t.string "description"
-    t.float "value"
+    t.float "value", default: 0.0
     t.date "main_date"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_budgets_on_user_id"
   end
 
-  create_table "movements", force: :cascade do |t|
+  create_table "expenses", force: :cascade do |t|
     t.string "description"
-    t.float "value"
-    t.integer "kind"
+    t.float "value", default: 0.0
     t.integer "budget_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["budget_id"], name: "index_movements_on_budget_id"
+    t.index ["budget_id"], name: "index_expenses_on_budget_id"
+  end
+
+  create_table "incomes", force: :cascade do |t|
+    t.string "description"
+    t.float "value", default: 0.0
+    t.integer "budget_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["budget_id"], name: "index_incomes_on_budget_id"
   end
 
   create_table "users", force: :cascade do |t|

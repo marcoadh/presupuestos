@@ -1,0 +1,26 @@
+<div class="row align-items-center p-1 form-expense">
+  <div class="col-7">
+    <%= form.text_field :description, class: "form-control expense_description", placeholder: "Ingresar Descripción", required: true %>
+  </div>
+  <div class="col-3">
+    <%= form.number_field :value, class: "form-control expense_value", required: true, min: 0, data: {
+      action: "change->budgets#loadAvailableBudget"
+    } %>
+  </div>
+  <div class="col-2">
+    <%= form.hidden_field :_destroy %>
+    <%= link_to "#", class: "text-danger", data: {
+      action: "click->budgets#removeItem click->budgets#loadAvailableBudget",
+      model: {
+        class: ".form-expense",
+        name: "egresos",
+        class_attributes: {
+          description: ".expense_description",
+          value: ".expense_value"
+        }
+      }
+    } do %>
+      <%= image_tag('icon-delete.svg') %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="row mb-1">
+  <div class="col-9">
+    <div class="d-flex flex-column">
+      <span class="font-weight-bold"><%= budget.description %></span>
+      <span class="text-muted text-truncate">S/ <%= budget.value %></span>
+    </div>
+  </div>
+  <div class="col-3">
+    <div class="row justify-content-center">
+      <%= link_to edit_budget_path(budget), data: { action: " ajax:success->budgets#renderForm ajax:success->budgets#initialConfigForm" }, remote: true do %>
+        <%= image_tag('icon-edit.svg') %>
+      <% end %>
+      <%= link_to budget_path(budget), method: :delete, data: { confirm: "Seguro de eliminar presupuesto?" }, class: "pl-1" do %>
+        <%= image_tag('icon-delete.svg') %>
+      <% end %>
+    </div>
+  </div>
+</div>

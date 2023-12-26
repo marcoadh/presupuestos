@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card-header bg-white border-bottom font-weight-bold">Presupuestos</div>
+  <div class="card-body">
+    <ul class="list-group">
+      <%= render budgets %>
+      <% if budgets.empty? %>
+        <li class="d-flex align-items-center">
+          <% if search.blank? %>
+            No hay registros.
+          <% else %>
+            No hay coincidencias.
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

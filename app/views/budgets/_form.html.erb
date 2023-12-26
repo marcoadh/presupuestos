@@ -1,0 +1,89 @@
+<%= form_with(model: budget, remote: true) do |form| %>
+  <div class="card rounded-sm">
+    <div class="card-header bg-dark">
+      <div class="presupuesto">
+        <div class="presupuesto_titulo">Presupuesto Disponible</div>
+        <%= form.text_field :description, class: "form-control text-center presupuesto_descripcion", required: true, placeholder: "Agregar descripción" %>
+        <%= form.hidden_field :value, class: "form-control", data: {
+          budgets_target: "budgetValue"
+        } %>
+        <div class="presupuesto_valor" id="presupuesto"></div>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-xl-4 col-lg-6 col-md-8">
+              <div class="presupuesto_ingreso limpiarEstilos">
+                <div class="presupuesto_ingreso--texto">Ingresos</div>
+                <div class="derecha limpiarEstilos">
+                  <div class="presupuesto_ingreso--valor" id="ingresos"></div>
+                  <div class="presupuesto_ingreso--porcentaje">&nbsp;</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-xl-4 col-lg-6 col-md-8">
+              <div class="presupuesto_egreso limpiarEstilos">
+                <div class="presupuesto_egreso--texto">Egresos</div>
+                <div class="derecha limpiarEstilos">
+                  <div class="presupuesto_egreso--valor" id="egresos"></div>
+                  <div class="presupuesto_egreso--porcentaje" id="porcentaje"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <template data-budgets-target="templateIncome">
+        <%= form.fields_for :incomes, Income.new, child_index: "TEMPLATE_RECORD" do |income| %>
+          <%= render "income_fields", form: income %>
+        <% end %>
+      </template>
+      <template data-budgets-target="templateExpense">
+        <%= form.fields_for :expenses, Expense.new, child_index: "TEMPLATE_RECORD" do |expense| %>
+          <%= render "expense_fields", form: expense %>
+        <% end %>
+      </template>
+
+      <div class="row">
+        <div class="col-sm-12 col-lg-2">
+          <div class="row">
+            <div class="col-6 col-lg-12 p-1"><%= link_to "Cancelar", budgets_path, class: "btn btn-light font-weight-bold w-100", data: { action: "click->budgets#cancelForm" } %></div>
+            <div class="col-6 col-lg-12 p-1"><%= form.submit "Guardar", class: "btn btn-success font-weight-bold w-100" %></div>
+            <div class="col-6 col-lg-12 p-1">
+              <%= link_to "Añadir Ingreso", "#", class: "btn btn-ingreso font-weight-bold w-100", data: {
+                action: "click->budgets#addItem",
+                list_target: "incomeListTarget",
+                template_target: "templateIncomeTarget"
+              } %>
+            </div>
+            <div class="col-6 col-lg-12 p-1">
+              <%= link_to "Añadir Egreso", "#", class: "btn btn-danger font-weight-bold w-100", data: {
+                action: "click->budgets#addItem",
+                list_target: "expenseListTarget",
+                template_target: "templateExpenseTarget"
+              } %>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-5">
+          <h2 class="ingreso_titulo">Ingresos</h2>
+          <div data-budgets-target="incomeList">
+            <%= form.fields_for :incomes do |income| %>
+              <%= render "income_fields", form: income %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-5">
+          <h2 class="egreso_titulo">Egresos</h2>
+          <div data-budgets-target="expenseList">
+            <%= form.fields_for :expenses do |expense| %>
+              <%= render "expense_fields", form: expense %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

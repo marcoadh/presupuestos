@@ -1,5 +1,12 @@
 es:
   activerecord:
+    models:
+      user: Usuario
+    attributes:
+      user:
+        full_name: Nombre Completo
+        email: Correo Electrónico
+        password: Contraseña
   date:
     abbr_day_names:
       - dom

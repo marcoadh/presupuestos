@@ -5,3 +5,7 @@
   <%= f.password_field :password, autocomplete: "current-password", placeholder: "Contraseña", class: "password control" %>
   <%= f.submit "Iniciar Sesión", class: "btn-submit control" %>
 <% end %>
+
+<div class="mt-3">
+  <%= render "devise/shared/links" %>
+</div>

@@ -11,15 +11,19 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body data-controller="app">
     <%= render 'layouts/application/navigation' %>
+
     <div class="main-content">
       <div class="page-content">
         <div class="container-fluid">
           <%= render 'shared/flash_message' %>
+
           <%= yield %>
         </div>
       </div>
     </div>
+
+    <%= render 'layouts/application/components' %>
   </body>
 </html>

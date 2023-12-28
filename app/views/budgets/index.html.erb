@@ -1,18 +1,17 @@
 <div data-controller="budgets">
   <div class="row">
-    <div class="col-8 col-md-4">
+    <div class="col-md-4 mb-3 mb-md-0">
       <div class="search-box">
-        <%= form_tag(budgets_path, method: :get, remote: true, data: { controller: "form", action: "ajax:success->budgets#renderList" }) do %>
+        <%= form_tag(budgets_path, method: :get, remote: true, data: { action: "ajax:success->budgets#renderList" }) do %>
           <div class="position-relative">
             <input type="search" name="search" class="form-control rounded-sm"
                     placeholder="Buscar..."
-                    value="<%= @search %>"
-                    data-action="search->form#onSearch">
+                    value="<%= @search %>">
           </div>
         <% end %>
       </div>
     </div>
-    <div class="col-4 col-md-8">
+    <div class="col-md-8">
       <%= link_to "Agregar", new_budget_path, class: "btn btn-success", remote: true, data: {
         action: "
           ajax:success->budgets#renderForm
@@ -22,9 +21,9 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-12 col-xl-4 mt-4" data-budgets-target="listContainer">
+    <div class="col-xl-4 mt-4" data-budgets-target="listContainer">
       <%= render "list", budgets: @budgets, search: @search %>
     </div>
-    <div class="col-12 col-xl-8 mt-4" data-budgets-target="formContainer"></div>
+    <div class="col-xl-8 mt-4" data-budgets-target="formContainer"></div>
   </div>
 </div>

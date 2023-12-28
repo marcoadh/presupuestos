@@ -1,0 +1,44 @@
+<%= form_with(model: user, remote: true, data: { controller: "form", action: "ajax:error->form#replace" }) do |form| %>
+  <%= render "shared/errors/form_errors", resource: user %>
+
+  <div class="row mb-3">
+    <div class="col-md-4 align-self-center">
+      <%= form.label :full_name, class: "font-weight-bold mb-0" %>
+    </div>
+    <div class="col-md-8">
+      <%= form.text_field :full_name, class: "form-control", required: true %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-4 align-self-center">
+      <%= form.label :email, class: "font-weight-bold mb-0" %>
+    </div>
+    <div class="col-md-8">
+      <%= form.email_field :email, class: "form-control", required: true %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-4 align-self-center">
+      <%= form.label :password, class: "font-weight-bold mb-0" %>
+    </div>
+    <div class="col-md-8">
+      <%= form.password_field :password, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-4 align-self-center">
+      <%= form.label :password_confirmation, class: "font-weight-bold mb-0" %>
+    </div>
+    <div class="col-md-8">
+      <%= form.password_field :password_confirmation, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="d-flex">
+    <button type="button" class="btn btn-light ml-auto" data-action="click->modal#close">Cerrar</button>
+    <%= form.submit "Guardar", class: "btn btn-success ml-3" %>
+  </div>
+<% end %>

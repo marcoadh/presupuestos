@@ -19,7 +19,6 @@
 //= require vendor
 //= require_self
 //= require_tree ./controllers
-//= require_tree ./components
 
 (function () {
   this.App || (this.App = {})

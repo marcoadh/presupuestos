@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   root to: "budgets#index"
 
   resources :budgets
+  resources :users, only: [:edit, :update]
 end

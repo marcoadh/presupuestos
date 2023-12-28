@@ -7,6 +7,7 @@ es:
         full_name: Nombre Completo
         email: Correo Electrónico
         password: Contraseña
+        password_confirmation: Confirmación de contraseña
   date:
     abbr_day_names:
       - dom

@@ -7,4 +7,8 @@ class User < ApplicationRecord
   has_many :budgets
 
   validates :full_name, presence: true
+
+  def custom_name(amount = 1)
+    full_name.split.take(amount).join(" ")
+  end
 end

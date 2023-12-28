@@ -1,7 +1,7 @@
 <h2 class="mb-3">Regístrate</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "login-form" }) do |f| %>
-  <%= render "shared/errors", obj: resource %>
+  <%= render "shared/errors/form_errors", resource: resource %>
 
   <%= f.text_field :full_name, autofocus: true, placeholder: "Nombre completo", class: "control" %>
   <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Correo Electrónico", class: "control" %>

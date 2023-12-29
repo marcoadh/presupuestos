@@ -3,7 +3,7 @@
     <%= form.text_field :description, class: "form-control income_description", placeholder: "Ingresar Descripción", required: true %>
   </div>
   <div class="col-3">
-    <%= form.number_field :value, class: "form-control income_value", required: true, min: 0, data: {
+    <%= form.number_field :value, step: :any, class: "form-control income_value", required: true, min: 0, data: {
       action: "change->budgets#loadAvailableBudget"
     } %>
   </div>

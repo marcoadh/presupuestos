@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update]
+  before_action :user_can_access?, only: [:edit, :update]
 
   def edit
     respond_to do |format|
@@ -31,5 +32,12 @@ class UsersController < ApplicationController
       end
 
       fields
+    end
+
+    def user_can_access?
+      if current_user.id != @user.id
+        render partial: 'shared/errors/inaccessible'
+        return
+      end
     end
 end

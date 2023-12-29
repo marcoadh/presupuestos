@@ -8,7 +8,13 @@ class User < ApplicationRecord
 
   validates :full_name, presence: true
 
+  enum role: { user: 1, administrator: 2 }
+
   def custom_name(amount = 1)
     full_name.split.take(amount).join(" ")
+  end
+
+  def role_humanize
+    User.human_enum_name(:role, role)
   end
 end
